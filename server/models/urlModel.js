@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const urlSchema = new mongoose.Schema({
-    originalUrl: {
+    longUrl: {
         type: String,
         required: true
     },

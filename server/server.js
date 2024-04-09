@@ -12,7 +12,7 @@ connectDB();
 app.use(express.json());
 
 // define routes
-//app.use('/api', urlRoutes);
+app.use('/api', urlRoutes);
 
 // default route
 app.get('/', (req, res) => {
