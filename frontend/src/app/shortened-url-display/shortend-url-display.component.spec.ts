@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ShortendUrlDisplayComponent } from './shortened-url-display.component';
+import { ShortenedUrlDisplayComponent } from './shortened-url-display.component';
 
 describe('ShortendUrlDisplayComponent', () => {
-  let component: ShortendUrlDisplayComponent;
-  let fixture: ComponentFixture<ShortendUrlDisplayComponent>;
+  let component: ShortenedUrlDisplayComponent;
+  let fixture: ComponentFixture<ShortenedUrlDisplayComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ShortendUrlDisplayComponent ]
+      declarations: [ ShortenedUrlDisplayComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ShortendUrlDisplayComponent);
+    fixture = TestBed.createComponent(ShortenedUrlDisplayComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
