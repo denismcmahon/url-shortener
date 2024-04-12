@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-url-shortening-form',
   templateUrl: './url-shortening-form.component.html',
-  styleUrls: ['./url-shortening-form.component.sass']
+  styleUrls: ['./url-shortening-form.component.scss']
 })
 export class UrlShorteningFormComponent {
   longUrl: string;
@@ -13,7 +14,8 @@ export class UrlShorteningFormComponent {
   constructor(private http: HttpClient) { }
 
   shortenUrl() {
-    this.http.post<{ shortUrl: string }>('/api/shorten', { longUrl: this.longUrl })
+    const backendUrl = `${environment.backendUrl}/api/shorten`;
+    this.http.post<{ shortUrl: string }>(backendUrl, { longUrl: this.longUrl })
       .subscribe(response => {
         this.shortUrl = response.shortUrl;
       }, error => {

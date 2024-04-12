@@ -20,17 +20,14 @@ const createShortenedURL = async (req, res) => {
 // redirect to the original URL
 const redirectToOriginalURL = async (req, res) => {
     const shortCode = req.params.shortCode;
-
     try {
         // find url document with the given short code
         const url = await URL.findOne({ shortCode });
-
         if(!url) {
             return res.status(404).json({ message: 'URL not found' });
         }
-
-        // redirect to the original URL
-        res.redirect(url.longUrl);
+        // respond with the original url
+        res.status(200).json({ longUrl: url.longUrl });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
