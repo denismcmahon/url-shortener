@@ -1,8 +1,14 @@
-<div>
-  <h2>URL Shortener</h2>
-  <input type="text" [(ngModel)]="longUrl" placeholder="Enter URL">
-  <button (click)="shortenUrl()">Shorten URL</button>
-  <div *ngIf="shortUrl">
-    Shortened URL: <a [href]="shortUrl" target="_blank">{{ shortUrl }}</a>
+<div class="container d-flex justify-content-center align-items-center vh-100">
+  <div class="panel panel-default p-4" style="max-width: 400px;">
+    <h2 class="mb-4">URL Shortener</h2>
+    <div class="input-group mb-3">
+      <input type="text" [(ngModel)]="longUrl" class="form-control" placeholder="Enter URL">
+      <div class="input-group-append">
+        <button class="btn btn-primary" type="button" (click)="shortenUrl()">Shorten URL</button>
+      </div>
+    </div>
+    <div class="alert alert-success" role="alert" *ngIf="shortUrl">
+      Shortened URL: <a [href]="shortUrl" target="_blank">{{ shortUrl }}</a>
+    </div>
   </div>
 </div>
