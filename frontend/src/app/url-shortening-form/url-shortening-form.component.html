@@ -2,13 +2,18 @@
   <div class="panel panel-default p-4" style="max-width: 500px;">
     <h2 class="mb-4">ShortFuse - URL Shortener</h2>
     <div class="input-group mb-3">
-      <input type="text" [(ngModel)]="longUrl" class="form-control" placeholder="Enter URL">
+      <input type="text" [(ngModel)]="longUrl" class="form-control" placeholder="Enter URL" (input)="resetFormSubmitted()">
       <div class="input-group-append">
         <button class="btn btn-primary" type="button" (click)="shortenUrl()">Shorten URL</button>
       </div>
     </div>
-    <div class="alert alert-success" role="alert" *ngIf="shortUrl">
-      Shortened URL: <a [href]="shortUrl" target="_blank">{{ shortUrl }}</a>
-    </div>
+    <ng-container *ngIf="formSubmitted">
+      <div class="alert alert-danger" role="alert" *ngIf="!isValidUrl();">
+        Please enter a valid URL.
+      </div>
+      <div class="alert alert-success" role="alert" *ngIf="isValidUrl() && shortUrl">
+        Shortened URL: <a [href]="shortUrl" target="_blank">{{ shortUrl }}</a>
+      </div>
+    </ng-container>
   </div>
 </div>
