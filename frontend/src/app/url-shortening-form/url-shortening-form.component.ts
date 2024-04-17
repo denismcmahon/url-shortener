@@ -23,19 +23,31 @@ export class UrlShorteningFormComponent {
 
   shortenUrl() {
     this.formSubmitted = true;
-    const backendUrl = `${environment.backendUrl}/api/shorten`;
-    let formattedUrl = this.urlHelper.formatUrl(this.longUrl);
-    this.http.post<{ shortUrl: string }>(backendUrl, { longUrl: formattedUrl })
-      .subscribe(response => {
-        this.shortUrl = response.shortUrl;
-        console.log('DM ==> response.shortUrl: ', response.shortUrl);
-      }, error => {
-        console.error('Error shortening URL:', error);
-      });
+    if(this.isValidUrl()) {
+      const backendUrl = `${environment.backendUrl}/api/shorten`;
+      let formattedUrl = this.urlHelper.formatUrl(this.longUrl);
+      this.http.post<{ shortUrl: string }>(backendUrl, { longUrl: formattedUrl })
+        .subscribe(response => {
+          this.shortUrl = response.shortUrl;
+          console.log('DM ==> response.shortUrl: ', response.shortUrl);
+        }, error => {
+          console.error('Error shortening URL:', error);
+        });
+      }
   }
 
   resetFormSubmitted() {
     this.formSubmitted = false;
+  }
+
+  copyToClipboard() {
+    const completeUrl =  `${environment.frontendUrl}/${this.shortUrl}`;
+    const urlInput = document.createElement('input');
+    urlInput.value = completeUrl;
+    document.body.appendChild(urlInput);
+    urlInput.select();
+    document.execCommand('copy');
+    document.body.removeChild(urlInput);
   }
 
 }
